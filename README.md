@@ -103,6 +103,201 @@ The initial responsibilities are divided as follows:
 
 Research, integration, testing and documentation will involve collaboration among team members.
 
+**Member 1 — Infrastructure & Container Management(Anjali)
+Main responsibility: Prepare the Linux environment and Docker containers that will be monitored by the security system.
+Technologies: Ubuntu, Linux, WSL2, Docker, Docker Desktop.
+Tasks and implementation
+1. Research and understanding
+- Understand containerization and container security.
+- Study what Docker containers are.
+- Understand why runtime monitoring is required.
+- Research basic Linux architecture.
+2. Linux environment setup
+- Install and configure Ubuntu using WSL2 (if using Windows).
+- Learn basic Linux commands.
+- Configure the environment required for Docker and Falco.
+- Verify that the Linux kernel environment supports the required monitoring driver.
+3. Docker installation and configuration
+- Install Docker Desktop or Docker Engine.
+- Configure Docker with the appropriate Linux environment.
+- Learn Docker commands.
+- Verify Docker installation.
+4. Create and manage containers
+- Create multiple sample containers.
+- Run an Nginx web server container.
+- Create an Ubuntu test container.
+- Create a database container.
+- Start, stop and inspect containers.
+5. Container information collection
+- Collect container IDs and names.
+- Check container status.
+- Monitor running containers.
+- Identify basic container configurations.
+6. Testing and documentation
+- Perform normal activities inside containers.
+- Test container start, stop and process execution.
+- Document Docker setup and configuration.
+- Provide working containers to Member 2 for Falco monitoring.
+Final deliverables
+- Working Ubuntu/Linux environment.
+- Configured Docker environment.
+- Multiple running test containers.
+- Container information and testing records.
+- Setup documentation.
+**Member 2 — Backend Development & Database Management(Ambika)
+Main responsibility: Develop the backend that collects security events, analyzes them, stores alerts and provides data to the frontend.
+Technologies: Python, FastAPI, MongoDB, REST APIs.
+Tasks and implementation
+1. Python event collector
+- Develop a Python program to receive Falco JSON events.
+- Read and parse event data.
+- Extract important information.
+- Identify affected containers and processes.
+- Handle incoming events continuously.
+2. Event processing
+- Extract event name.
+- Identify the event source.
+- Collect container information.
+- Extract process name and PID where available.
+- Record event timestamp and evidence.
+3. Threat detection and severity classification
+- Develop event classification logic.
+- Categorize security events.
+- Assign severity levels such as LOW, MEDIUM, HIGH and CRITICAL.
+- Use event context and Falco rule priority rather than treating every unusual event as dangerous.
+4. Recommendation system
+- Generate suggestions based on detected threats.
+- Recommend process investigation.
+- Suggest checking container permissions.
+- Recommend inspecting suspicious network connections.
+- Suggest container isolation when appropriate.
+5. MongoDB integration
+- Create a MongoDB database.
+- Create collections for security events and alerts.
+- Store event details.
+- Store severity and recommendations.
+- Retrieve historical alerts.
+- Create indexes and manage event retention.
+6. FastAPI backend development
+- Create the FastAPI application.
+- Develop REST API endpoints.
+- Connect FastAPI with MongoDB.
+- Implement error handling and data validation.
+- Configure CORS for frontend communication.
+Suggested API endpoints
+API	Purpose
+GET /alerts	Retrieve security alerts
+GET /containers	Retrieve container information
+GET /statistics	Retrieve security statistics
+GET /events	Retrieve event history
+GET /alerts/{id}	Retrieve specific alert details
+
+Final deliverables
+- Python event collector.
+- Threat classification logic.
+- Severity assignment system.
+- Recommendation generator.
+- MongoDB database.
+- FastAPI backend and REST APIs.
+**Member 3 — Frontend Development & System Validation(Adil)
+Main responsibility: Develop the user interface, visualize security information and perform end-to-end system validation.
+Technologies: React.js, JavaScript, HTML, CSS, Recharts.
+Tasks and implementation
+1. Dashboard design
+- Design the main security dashboard.
+- Create a clean and user-friendly interface.
+- Add navigation menus.
+- Design responsive dashboard layouts.
+2. Overview page
+- Display total monitored containers.
+- Display total security alerts.
+- Show active threats.
+- Display severity distribution.
+- Show recent security activities.
+3. Container monitoring page
+- Display monitored containers.
+- Show container names and status.
+- Display container-wise events.
+- Provide a way to inspect individual container activity.
+4. Security alerts page
+- Display all generated alerts.
+- Show threat names.
+- Display severity levels.
+- Show affected containers.
+- Display timestamps and evidence.
+5. Threat details page
+- Show detailed information about a selected alert.
+- Display suspicious process information.
+- Show security recommendations.
+- Display the evidence associated with the event.
+6. Charts and visualization
+- Create charts using Recharts.
+- Show LOW, MEDIUM, HIGH and CRITICAL alerts.
+- Display alert trends.
+- Show container activity statistics.
+7. Backend integration
+- Connect React with FastAPI.
+- Fetch data from REST APIs.
+- Display MongoDB data received through the backend.
+- Handle loading states and API errors.
+- Test CORS configuration.
+8. System validation and demo
+- Test dashboard functionality.
+- Verify that new alerts appear correctly.
+- Check API and frontend integration.
+- Prepare the final project demonstration.
+- Coordinate with other members for end-to-end testing.
+Final deliverables
+- React security dashboard.
+- Container monitoring interface.
+- Security alerts and details pages.
+- Charts and event history.
+- Frontend-backend integration.
+- Final demonstration.
+**Member 4 — Kernel Monitoring & Threat Detection(Manu)
+Main responsibility: Develop the runtime monitoring mechanism that observes container activities and detects suspicious behavior.
+Technologies: Linux Kernel, eBPF, Falco, YAML, Docker.
+Tasks and implementation
+1. Research Linux kernel and eBPF
+- Understand the Linux kernel.
+- Learn how containers use the host Linux kernel.
+- Understand what eBPF is.
+- Study how kernel events can be monitored.
+2. Falco installation and configuration
+- Install Falco in the compatible Linux environment.
+- Configure the Falco driver.
+- Set up the eBPF driver.
+- Verify that Falco can receive kernel events.
+3. Runtime activity monitoring
+- Monitor process execution.
+- Monitor suspicious file access.
+- Monitor unusual network connections.
+- Monitor privilege changes.
+- Observe relevant system calls.
+4. Detection rules implementation
+- Understand existing Falco rules.
+- Configure custom detection rules.
+- Create rules for suspicious shell execution.
+- Create rules for unexpected sensitive file access.
+- Configure rules for suspicious network activity.
+5. Security event generation
+- Generate test activities inside containers.
+- Observe Falco event output.
+- Identify which rule triggered an event.
+- Collect event details in JSON format.
+6. Testing and validation
+- Test normal and suspicious activities.
+- Verify whether configured rules detect expected events.
+- Check false positives.
+- Share event samples and rule information with Member 3.
+Final deliverables
+- Working Falco configuration.
+- eBPF driver setup.
+- Custom detection rules.
+- Runtime security event output.
+- Detection testing report.
+
+
 ## 9. Current Project Status
 
 **Current stage:** Planning and initial research.
